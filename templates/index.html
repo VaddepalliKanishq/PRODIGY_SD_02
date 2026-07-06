@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Guess | Neumorphic UI</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <audio id="sound-win" src="{{ url_for('static', filename='sounds/win.mp3') }}" preload="auto"></audio>
+    <audio id="sound-lose" src="{{ url_for('static', filename='sounds/lose.mp3') }}" preload="auto"></audio>
+
+    <div class="glass-container glass3d">
+        <header>
+            <h1>Smart Guess</h1>
+            <div class="difficulty-selector">
+                <button class="btn-diff active" data-diff="easy">Easy</button>
+                <button class="btn-diff" data-diff="medium">Medium</button>
+                <button class="btn-diff" data-diff="hard">Hard</button>
+            </div>
+        </header>
+
+        <main>
+            <div class="game-info">
+                <p id="range-text">Select difficulty to begin...</p>
+                <div class="stats">
+                    <span class="badge">Attempts Left: <strong id="attempts-ui">-</strong></span>
+                </div>
+            </div>
+
+            <div class="input-group">
+                <input type="number" id="guess-input" placeholder="Enter number..." disabled>
+                <button id="guess-btn" disabled>Guess</button>
+            </div>
+
+            <div class="feedback-area">
+                <p id="feedback-text"></p>
+            </div>
+        </main>
+
+        <button id="start-btn" class="primary-btn">Start Game</button>
+        <button id="leaderboard-btn" class="text-btn">View Leaderboard</button>
+    </div>
+
+    <!-- Leaderboard Modal -->
+    <div id="modal" class="modal hidden">
+        <div class="modal-content glass-panel">
+            <span class="close-btn">&times;</span>
+            <h2>Top Scores <img src="{{ url_for('static', filename='images/trophy.png') }}" width="24" alt="Trophy"
+                    onerror="this.style.display='none'"></h2>
+            <ul id="score-list"></ul>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+
+</html>
